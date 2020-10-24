@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="659.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardController">
+   <children>
+      <Pane layoutX="137.0" layoutY="64.0" prefHeight="580.0" prefWidth="934.0">
+         <children>
+            <AreaChart fx:id="RevenueChart" layoutX="37.0" layoutY="146.0" prefHeight="422.0" prefWidth="865.0" title="Weekly Revenue">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </AreaChart>
+            <Label layoutX="412.0" layoutY="8.0" text="Dashboard">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="109.0" layoutY="63.0" text="Total revenue" />
+            <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="82.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/coins.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="Revenue" layoutX="114.0" layoutY="71.0" prefHeight="73.0" prefWidth="317.0" text="1000.00">
+               <font>
+                  <Font name="System Bold" size="50.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="48.0" fitWidth="54.0" layoutX="73.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/Peso.png" />
+               </image>
+            </ImageView>
+            <ToggleButton fx:id="Toggle" layoutX="260.0" layoutY="59.0" mnemonicParsing="false" onAction="#ToggleMode" text="Today" />
+         </children></Pane>
+      <Label fx:id="CurrentUser" layoutX="859.0" layoutY="20.0" prefHeight="30.0" prefWidth="161.0" text="Username">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="48.0" fitWidth="54.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/Bag.png" />
+         </image></ImageView>
+      <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="823.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/user.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="18.0" layoutY="78.0" text="Menu">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="18.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/product.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="18.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/payment.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="18.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/reports.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="49.0" layoutY="208.0" onMouseClicked="#OpenProducts" text="Products">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Label layoutX="49.0" layoutY="120.0" onMouseClicked="#OpenNewLoan" text="New Loan">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Label layoutX="49.0" layoutY="256.0" onMouseClicked="#OpenPayment" text="Payment">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Label layoutX="49.0" layoutY="304.0" onMouseClicked="#OpenReports" text="Reports">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Label layoutX="49.0" layoutY="163.0" onMouseClicked="#OpenCustomers" text="Customers">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="18.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/customer.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Logout" fitHeight="37.0" fitWidth="33.0" layoutX="1030.0" layoutY="18.0" onMouseClicked="#Logout" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/logout.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="17.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/loan.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="720.0" layoutY="25.0" onMouseClicked="#AddAccount" text="Add Account">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="18.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/dealer.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="49.0" layoutY="348.0" onMouseClicked="#OpenDealers" text="Dealers">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

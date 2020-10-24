@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="640.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomersController">
+   <children>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/customer.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="56.0" layoutY="16.0" text="Customers">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="1036.0" layoutY="14.0" onMouseClicked="#GoBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/back.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="36.0" layoutY="102.0" prefHeight="507.0" prefWidth="1015.0">
+         <children>
+            <TableView fx:id="CustomerTable" layoutX="-11.0" layoutY="7.0" prefHeight="507.0" prefWidth="1037.0">
+              <columns>
+                <TableColumn fx:id="col_id" prefWidth="75.0" text="CN" />
+                <TableColumn fx:id="col_firstname" prefWidth="215.0" text="First name" />
+                  <TableColumn fx:id="col_lastname" prefWidth="270.0" text="Last name" />
+                  <TableColumn fx:id="col_mobile" prefWidth="168.0" text="Mobile number" />
+                  <TableColumn fx:id="col_balance" prefWidth="143.0" text="Remaining balance" />
+                  <TableColumn fx:id="col_update" prefWidth="164.0" text="Action" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <TextField fx:id="tbSearchCutomer" layoutX="853.0" layoutY="60.0" prefHeight="31.0" prefWidth="216.0" promptText="search">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lbCaption" layoutX="71.0" layoutY="63.0" onMouseClicked="#OpenAddCustomer" text="Add customer">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="36.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/add_product.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

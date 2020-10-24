@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="497.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AddDealerController">
+   <children>
+      <BorderPane layoutX="172.0" layoutY="149.0" prefHeight="497.0" prefWidth="847.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="48.0" prefWidth="847.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="34.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/addDealer.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="lbCaption" text="Add Dealer">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="650.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="34.0" fitWidth="46.0" onMouseClicked="#GoBack" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/back.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <ImageView fx:id="QrCode" fitHeight="299.0" fitWidth="399.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../icons/qrcode.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="60.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </left>
+         <center>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Dealer Details">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tbFname" prefHeight="40.0" prefWidth="398.0" promptText="First name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tbLname" prefHeight="40.0" prefWidth="398.0" promptText="Last name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tbAddress" prefHeight="40.0" prefWidth="398.0" promptText="Address">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tbNumber" prefHeight="40.0" prefWidth="398.0" promptText="Mobile number">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <DatePicker fx:id="tbBday" prefHeight="40.0" prefWidth="398.0" promptText="Birthday">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <Button fx:id="btnSave" mnemonicParsing="false" onMouseClicked="#SaveDealer" prefHeight="54.0" prefWidth="189.0" text="Save">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

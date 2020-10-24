@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="640.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DealersController">
+   <children>
+      <BorderPane layoutX="256.0" layoutY="185.0" prefHeight="640.0" prefWidth="1082.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="61.0" prefWidth="1082.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/dealer.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="Dealers">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="900.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="51.0" onMouseClicked="#GoBack" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/back.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <top>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1082.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/addDealer.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label onMouseClicked="#AddDealer" text="Add Dealer">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="600.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="SearchDealer" prefHeight="38.0" prefWidth="213.0" promptText="Search dealer">
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+               </top>
+               <center>
+                  <TableView fx:id="DealersTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="col_dealer_id" prefWidth="74.0" text="DN" />
+                      <TableColumn fx:id="col_fname" minWidth="4.0" prefWidth="198.0" text="Firstname" />
+                        <TableColumn fx:id="col_lname" prefWidth="223.0" text="Lastname" />
+                        <TableColumn fx:id="col_balance" prefWidth="306.0" text="Remaining balance" />
+                        <TableColumn fx:id="col_update" prefWidth="128.0" text="Update" />
+                        <TableColumn fx:id="col_select" prefWidth="112.0" text="Select" />
+                    </columns>
+                     <BorderPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </BorderPane.margin>
+                  </TableView>
+               </center>
+            </BorderPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

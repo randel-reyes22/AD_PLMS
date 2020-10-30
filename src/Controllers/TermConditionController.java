@@ -29,8 +29,10 @@ public class TermConditionController extends NewLoanController implements Initia
 
     //classes
     private final Loan loan = new Loan();
-    private final double Total = totalAmount;
     private final PayOut payOut = new PayOut();
+
+    //variables
+    private final double Total = totalAmount;
     private String term;
     private String due;
 
@@ -71,18 +73,22 @@ public class TermConditionController extends NewLoanController implements Initia
     }
 
     private boolean CheckEmptyFields(){
+        //if term and due is empty
+        //input none in the data
+        final String none = "none";
+
         LinkedList<TextField> textFields = new LinkedList<>();
         textFields.add(tbCustomerName);
         textFields.add(tbModeOfPayment);
         //textFields.add(tbTerm);
 
         if(tbTerm.getText().isEmpty())
-            term = "none";
+            term = none;
         else
             term = tbTerm.getText();
 
         if(DueDate.getValue() == null) {
-            due = "none";
+            due = none;
         }else
             due = String.valueOf(DueDate.getValue());
 

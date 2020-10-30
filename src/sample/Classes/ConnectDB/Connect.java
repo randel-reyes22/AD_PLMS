@@ -9,8 +9,9 @@ public class Connect {
     public static Connection Link() {
 
         //MSSQL Server connection string
-        final String LocalURL = "jdbc:sqlserver://Server=RANDEL-PC;Database=DPLMS; IntegratedSecurity=True; Uid=auth_windows";
-        //final String url2 = "jdbc:sqlserver://Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=DPLMS;Data Source=RANDEL-PC";
+        final String LocalURL = "jdbc:sqlserver://ServerName=RANDEL-PC;Database=DPLMS; IntegratedSecurity=True;";
+        final String URL2 = "jdbc:sqlserver://RANDEL-PC:1433;databaseName=DPLMS;integratedSecurity=true";
+        final String URL = "jdbc:sqlserver://Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=DPLMS;Data Source=RANDEL-PC:1433";
 
         Connection conn = null;
         try
@@ -20,6 +21,11 @@ public class Connect {
         catch (SQLException e)
         {
             System.out.println(e.getMessage());
+            try {
+                conn.close();
+            } catch (NullPointerException | SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
         return conn;
 

@@ -9,14 +9,12 @@ public class Connect {
     public static Connection Link() {
 
         //MSSQL Server connection string
-        final String LocalURL = "jdbc:sqlserver://ServerName=RANDEL-PC;Database=DPLMS; IntegratedSecurity=True;";
-        final String URL2 = "jdbc:sqlserver://RANDEL-PC:1433;databaseName=DPLMS;integratedSecurity=true";
-        final String URL = "jdbc:sqlserver://Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=DPLMS;Data Source=RANDEL-PC:1433";
+        final String LappyURL = "jdbc:sqlserver://RANDEL-LAPPY:1433;instanceName=SQLEXPRESS;databaseName=DPLMS;IntegratedSecurity=True;";
 
         Connection conn = null;
         try
         {
-            conn = DriverManager.getConnection(LocalURL);
+            conn = DriverManager.getConnection(LappyURL);
         }
         catch (SQLException e)
         {

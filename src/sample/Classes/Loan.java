@@ -311,13 +311,13 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
 
     //ILoan methods implementation
     @Override
-    public boolean AddLoan(double total, String modeOfPayment, String Term, String duedate) {
+    public boolean AddLoan(final double total, String modeOfPayment, String Term, String duedate) {
 
         String addLoan = "INSERT INTO Loan " +
-                "(CustomerFk, ProductFk, PaymentMode, Duedate, Term, Qty, Status)" +
+                "(CustomerID, ProductID, PaymentMode, Duedate, Term, Qty, Status)" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        String addBalance = "UPDATE Customer SET Balance = Balance + ? WHERE CustomerId = ?";
+        String addBalance = "UPDATE Customer SET Balance += ? WHERE CustomerID = ?";
 
         Connection conn = Connect.Link();
 
@@ -363,8 +363,8 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
         LoanUtils.ObHistoryPayments.clear(); //clear the ob list
         Connection conn = Connect.Link();
         try{
-            String sql = "SELECT CollectionId, CollectionAmount, GivenDate " +
-                    "FROM Collections WHERE CustomerFk = ?";
+            String sql = "SELECT CollectionID, CollectionAmount, GivenDate " +
+                    "FROM Collections WHERE CustomerID = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, getCustomer_PK());
@@ -465,7 +465,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
     @Override
     public double TotalRevenueToday() {
 
-        String revenueToday = "SELECT sum(CollectionAmount) FROM Collections where GivenDate = ?";
+        String revenueToday = "SELECT sum(CollectionAmount) FROM Collections WHERE GivenDate = ?";
         Connection conn = Connect.Link();
         try{
             PreparedStatement ps =  conn.prepareStatement(revenueToday);

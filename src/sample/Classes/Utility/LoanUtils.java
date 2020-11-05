@@ -18,14 +18,12 @@ public class LoanUtils {
     public static ObservableList<TableReceipt> ObTableReceipt = FXCollections.observableArrayList();
     public static ObservableList<Product> ObProduct = FXCollections.observableArrayList();
     public static ObservableList<Customer> ObCustomer = FXCollections.observableArrayList();
-    public static ObservableList<Dealer> ObDealer = FXCollections.observableArrayList();
     public static ObservableList<HistoryPayment> ObHistoryPayments = FXCollections.observableArrayList();
     public static ObservableList<LoanedProducts> ObLoanedProducts = FXCollections.observableArrayList();
 
     //linked list for updating and adding
     public static LinkedList<Account> LLAccount = new LinkedList<>();
     public static LinkedList<Customer> LLCustomer = new LinkedList<>();
-    public static LinkedList<Dealer> LLDealer = new LinkedList<>();
     public static LinkedList<Product> LLProduct = new LinkedList<>();
     public static LinkedList<Integer> LoanIds = new LinkedList<>();
 

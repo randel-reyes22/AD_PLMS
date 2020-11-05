@@ -12,12 +12,12 @@ public class PayOut extends Loan implements IPay {
     @Override
     public void Makepayment(String dategiven, double amount) {
         //insert into  Collections
-        String collect = "INSERT INTO main.Collections (CustomerFk, CollectionAmount, GivenDate) " +
+        String collect = "INSERT INTO Collections (CustomerID, CollectionAmount, GivenDate) " +
                          "VALUES (?, ?, ?)";
 
         //update balance of the customer
         //deduct to the remaining balance of the customer
-        String updateBalance = "UPDATE main.Customer SET Balance = Balance - ? " +
+        String updateBalance = "UPDATE Customer SET Balance = Balance - ? " +
                                 "WHERE CustomerId = ?";
         //open connection
         Connection conn = Connect.Link();
@@ -59,10 +59,10 @@ public class PayOut extends Loan implements IPay {
 
     public void CheckStatus() {
 
-        String updateStatus = "UPDATE main.Loan SET Status = ? " +
-                                "WHERE LoanId = ?";
+        String updateStatus = "UPDATE Loan SET Status = ? " +
+                                "WHERE LoanID = ?";
 
-        String loanId = "SELECT * FROM main.Loan WHERE CustomerFk = ? AND Status = ?";
+        String loanId = "SELECT * FROM Loan WHERE CustomerID = ? AND Status = ?";
 
         Connection conn;
         conn = Connect.Link();

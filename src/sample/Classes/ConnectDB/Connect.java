@@ -10,11 +10,13 @@ public class Connect {
 
         //MSSQL Server connection string
         final String LappyURL = "jdbc:sqlserver://RANDEL-LAPPY:1433;instanceName=SQLEXPRESS;databaseName=DPLMS;IntegratedSecurity=True;";
+        final String PCURL = "jdbc:sqlserver://RANDEL-PC:1433;databaseName=DPLMS;IntegratedSecurity=True;";
 
         Connection conn = null;
+
         try
         {
-            conn = DriverManager.getConnection(LappyURL);
+            conn = DriverManager.getConnection(PCURL); //if this fail; Laptop
         }
         catch (SQLException e)
         {

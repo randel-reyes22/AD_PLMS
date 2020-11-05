@@ -99,21 +99,6 @@ public class Open {
         }
     }
 
-    //  open add customer window
-    public static void AddDealer(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Open.class.getResource("../../FXMLFiles/AddDealer.fxml"));
-            Parent addCustomer = fxmlLoader.load();
-            Stage window = new Stage();
-            window.setScene(new Scene(addCustomer));
-            window.setResizable(false);
-            window.show();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
 //  open payment window
     public static void Payment(){
         try {

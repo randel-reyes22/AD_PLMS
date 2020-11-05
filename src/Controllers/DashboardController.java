@@ -43,20 +43,20 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //sets current user name in tuhe label form
+        //sets current user name in the label form
         CurrentUser.setText(LoanUtils.sess_firstname + " " + LoanUtils.sess_lastname);
         //default selected mode is today
         //Today.setSelected(true);
         AreaWeekRevenueChart();
+
         /*get the revenue
-                default is today*/
+        default is today*/
         Revenue.setText(Format(Math.round(loan.TotalRevenueToday())));
     }
 
     private void AreaWeekRevenueChart(){
-        String revenueWeek = "SELECT  GivenDate ,sum(CollectionAmount) " +
-                                "FROM main.Collections " +
-                                "WHERE GivenDate  = ?";
+        String revenueWeek = "SELECT GivenDate, sum(CollectionAmount) " +
+                             "FROM Collections WHERE GivenDate  = ? GROUP BY GivenDate";
         //invoke method
         WeekDates.GetAllWeekDates();
         //coordinates
@@ -77,7 +77,7 @@ public class DashboardController implements Initializable {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
                 //if an exception occurs
-                MessageBox.ShowError("An error occurred");
+                MessageBox.ShowError("An error occurred - YEZZER");
             } finally {
                 try {
                     conn.close();

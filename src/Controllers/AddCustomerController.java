@@ -1,9 +1,6 @@
 package Controllers;
 
-import javafx.scene.control.DatePicker;
 import javafx.scene.image.ImageView;
-import sample.Classes.Dealers_loan;
-import sample.Classes.Entities.Dealer;
 import sample.Classes.Tools.MessageBox;
 import sample.WindowState.Close;
 import javafx.fxml.FXML;
@@ -15,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 import sample.Classes.Entities.Customer;
 import sample.Classes.Loan;
 import sample.Classes.Utility.LoanUtils;
-import sample.WindowState.Open;
 
 import java.net.URL;
 import java.util.LinkedList;
@@ -37,11 +33,8 @@ public class AddCustomerController extends CustomersController implements Initia
 
     @FXML private ImageView img_qr_code;
 
-
-    //
     private final LinkedList<TextField> textFields = new LinkedList<>();
     private final Loan loan = new Loan();
-    private final Dealers_loan dealers_loan = new Dealers_loan();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

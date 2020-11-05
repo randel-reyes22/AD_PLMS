@@ -32,13 +32,11 @@ public class TermConditionController extends NewLoanController implements Initia
     private final PayOut payOut = new PayOut();
 
     //variables
-    private final double Total = totalAmount;
     private String term;
     private String due;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Term " + Total);
         //display the name of the customer
         for(Customer customer: LoanUtils.ObCustomer){
             if(customer.getCustomer_id() == LoanUtils.getCustomer_PK()){
@@ -51,9 +49,11 @@ public class TermConditionController extends NewLoanController implements Initia
     @FXML
     void btnSave(MouseEvent event) {
 
+        System.out.println("This is the total amount " + totalAmount);
+
         if(!CheckEmptyFields()) {
             //stat means if loan is successfully added
-            boolean stat = loan.AddLoan(Total ,tbModeOfPayment.getText().toUpperCase(), term, due/*final string date*/);
+            boolean stat = loan.AddLoan(totalAmount /*this is from the protected var*/,tbModeOfPayment.getText().toUpperCase(), term, due/*final string date*/);
 
             if (stat) {
                 LoanUtils.ObTableReceipt.clear(); //clear the table receipt

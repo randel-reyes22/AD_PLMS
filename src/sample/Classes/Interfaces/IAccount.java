@@ -2,7 +2,7 @@ package sample.Classes.Interfaces;
 
 public interface IAccount {
     /*This will authenticate the login credentials*/
-    String Login(String username, String password);
+    String Login(final String username, final String password);
 
     /*This will add an user account*/
     void AddUserAccount();

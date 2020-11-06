@@ -4,7 +4,9 @@ import java.sql.SQLException;
 
 public interface ILoan {
 
+    /*this is used to describe if the product is paid*/
     String PAID = "PAID";
+    /*this is used to describe if the product is not yet paid*/
     String UNPAID = "UNPAID";
 
     /*This will add loan to a particular customer

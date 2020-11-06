@@ -26,10 +26,8 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
     private QrCodeGen qrCodeGen = new QrCodeGen();
 
     @Override
-    public String Login(String username, String password) {
+    public String Login(final String username, final String password) {
         Connection conn = Connect.Link();
-        final String Username = username;
-        final String Password = password;
 
         String sql = "SELECT * FROM Account";  //query string
 
@@ -38,8 +36,8 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
-                if(Username.equals(rs.getString("username")) &&
-                        Password.equals( Hash.Decode(rs.getString( "password" )))){
+                if(username.equals(rs.getString("username")) &&
+                        password.equals( Hash.Decode(rs.getString( "password" )))){
                     //set the session values
                     LoanUtils.sess_firstname = rs.getString("Firstname");
                     LoanUtils.sess_lastname = rs.getString("Lastname");
@@ -341,7 +339,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             ps2.setInt(2, getCustomer_PK());
             ps2.executeUpdate();
 
-            UpdateQrCode(); //will update the qr code with the latest qr code
+            UpdateQrCode(); //will update the qr code with the latest qr code♣
 
             //if customer is successfully added
             MessageBox.ShowInformation("Loan has been saved");

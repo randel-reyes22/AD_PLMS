@@ -1,6 +1,9 @@
 package sample.Classes.Interfaces;
 
+import sample.Classes.Entities.Customer;
+
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 public interface ILoan {
 
@@ -16,8 +19,9 @@ public interface ILoan {
     /*This will get the unpaid payment history of a particular customer*/
     void GetPaymentHistory(String status);
 
-    /*THis will get the products loaned of a particular customer*/
+    /*This will get the products loaned of a particular customer*/
     void GetProductsLoaned(String status);
 
+    /*this will update the qr code of an specific customer*/
     void UpdateQrCode();
 }

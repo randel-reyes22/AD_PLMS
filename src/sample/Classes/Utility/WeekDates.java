@@ -56,8 +56,15 @@ public class WeekDates {
         for (int i = 0; i < 7; i++) {
             //add to the linklist
             dates.add(dateformat.format(date.getTime()));
-            
+            System.out.println();
             date.add(Calendar.DATE, 1);
+        }
+
+    }
+
+    private static void Testing(){
+        for(String date: dates){
+            System.out.println("Date" + date);
         }
     }
 

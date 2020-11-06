@@ -46,7 +46,7 @@ public class DashboardController implements Initializable {
         //sets current user name in the label form
         CurrentUser.setText(LoanUtils.sess_firstname + " " + LoanUtils.sess_lastname);
         //default selected mode is today
-        //Today.setSelected(true);
+
         AreaWeekRevenueChart();
 
         /*get the revenue
@@ -55,40 +55,50 @@ public class DashboardController implements Initializable {
     }
 
     private void AreaWeekRevenueChart(){
-        String revenueWeek = "SELECT GivenDate, sum(CollectionAmount) " +
+        /*connection*/
+        Connection conn = Connect.Link();
+        /*TSQL*/
+        String revenueWeek = "SELECT GivenDate, sum(CollectionAmount) AS 'collection'" +
                              "FROM Collections WHERE GivenDate  = ? GROUP BY GivenDate";
         //invoke method
         WeekDates.GetAllWeekDates();
         //coordinates
         XYChart.Series seriesRevenue= new XYChart.Series();
+        seriesRevenue.setName("Collections");
 
-        for(String dates: WeekDates.dates){
-            Connection conn = Connect.Link();
+        for(String dates: WeekDates.dates)
+        {
             try {
                 PreparedStatement ps = conn.prepareStatement(revenueWeek);
                 ps.setString(1, dates);
-                ResultSet result = ps.executeQuery();
-                result.next();
+                ResultSet rs = ps.executeQuery();
+                //rs.next();
 
-                seriesRevenue.setName("Revenue");
+                //System.out.println("ey" + rs.getDouble("collection"));
 
-                seriesRevenue.getData().add(new XYChart.Data(dates,result.getDouble(2)));
+                //seriesRevenue.getData().add(new XYChart.Data(dates,rs.getDouble("collection")));
+
+                if(rs.next()){
+                    seriesRevenue.getData().add(new XYChart.Data(dates,rs.getDouble("collection")));
+                }
 
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                System.out.println(ex.toString());
                 //if an exception occurs
-                MessageBox.ShowError("An error occurred - YEZZER");
-            } finally {
-                try {
-                    conn.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+                //MessageBox.ShowInformation("Cannot display collections for this week");
+                //break;/*if exception occurs break the loop*/
             }
         }
 
         //after the loop add the data to the chart
         RevenueChart.getData().addAll(seriesRevenue);
+
+        /*after adding the data close the connection*/
+        try {
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @FXML

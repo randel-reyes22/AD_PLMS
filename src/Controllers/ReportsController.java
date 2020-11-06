@@ -99,43 +99,43 @@ public class ReportsController implements Initializable {
     }
 
     private void RevenueSummary() throws ParseException {
-        String revenueWeek = "SELECT GivenDate ,sum(CollectionAmount) FROM main.Collections " +
-                "WHERE GivenDate  = ?";
+        String revenueWeek = "SELECT GivenDate ,sum(CollectionAmount) AS 'collection' FROM Collections " +
+                "WHERE GivenDate  = ? GROUP BY GivenDate";
 
         //invoke method to gather all dates
         WeekDates.GetAllDays(String.valueOf(StartDate.getValue()),
                 String.valueOf(EndDate.getValue()));
 
+        //connection
+        Connection conn = Connect.Link();
         //coordinates
         XYChart.Series seriesRevenue= new XYChart.Series();
-        seriesRevenue.setName("Revenue");
+        seriesRevenue.setName("Collections");
 
-        for(String dates: WeekDates.dates){
-            Connection conn = Connect.Link();
+        for(String dates: WeekDates.dates)
+        {
             try {
                 PreparedStatement ps = conn.prepareStatement(revenueWeek);
                 ps.setString(1, dates);
                 ResultSet result = ps.executeQuery();
-                result.next();
 
-                seriesRevenue.getData().add(new XYChart.Data(dates,result.getDouble(2)));
+                if(result.next())
+                    seriesRevenue.getData().add(new XYChart.Data(dates,result.getDouble("collection")));
 
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
-                //if an exception occurs
-                MessageBox.ShowError("An error occurred");
-
-            } finally {
-                try {
-                    conn.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
             }
         }
 
         //after the loop add the data to the chart
         RevenueSummary.getData().addAll(seriesRevenue);
+
+        /*after adding the data close the connection*/
+        try {
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     //history tab
@@ -237,12 +237,12 @@ public class ReportsController implements Initializable {
 
     @FXML
     void print_payment_history(MouseEvent event) {
-
+        /*no function yet for printing payment history*/
     }
 
     @FXML
     void print_product_history(MouseEvent event) {
-
+        /*no function yet fot print product history*/
     }
 
 

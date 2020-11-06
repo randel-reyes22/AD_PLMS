@@ -68,7 +68,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
         /* get the first most added customer in the linked list */
         Account account = LLAccount.getFirst();
 
-        String insertCustomer = "INSERT INTO Account (Firstname, Lastname, Username, Password)" +
+        String insertCustomer = "INSERT INTO Account (Firstname, Lastname, Username, Password) " +
                                 "VALUES (?, ?, ?, ?)";
         Connection conn = Connect.Link();
 
@@ -112,7 +112,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             ps.setString(2, customer.getLastname());
             ps.setString(3, customer.getMobile());
             ps.setString(4, customer.getAddress());
-            ps.setBytes(5, qrCodeGen.GenerateQRCode(qrCodeGen.Build(customer.getFirstname(), customer.getLastname(), customer.getMobile()
+            ps.setBytes(5, qrCodeGen.GenerateQRCode(qrCodeGen.BuildString(customer.getFirstname(), customer.getLastname(), customer.getMobile()
                             , customer.getAddress(), customer.getBalance())));
             ps.executeUpdate();
 
@@ -141,9 +141,10 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
         /* get the first most added customer in the linked list */
         Customer customer = LLCustomer.getFirst();
 
-        String updateCustomer = "UPDATE Customer " +
-                "SET Firstname = ?, Lastname = ?, MobileNumber = ?, Address = ?" +
-                "WHERE CustomerId = ?";
+        String updateCustomer =
+                "UPDATE Customer SET Firstname = ?, Lastname = ?, MobileNumber = ?, Address = ? " +
+                "WHERE CustomerID = ?";
+
         Connection conn = Connect.Link();
         try{
             PreparedStatement ps = conn.prepareStatement(updateCustomer);
@@ -253,7 +254,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
         Connection conn = Connect.Link();
         String updateProduct = "UPDATE Product " +
                                 "SET ProdName = ?, ProdPrice = ?, ProdUnit = ? " +
-                                "WHERE ProductId = ?";
+                                "WHERE ProductID = ?";
         try{
             PreparedStatement ps = conn.prepareStatement(updateProduct);
             ps.setString(1, product.getProdName());
@@ -290,7 +291,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             ResultSet rs = conn.createStatement().executeQuery(sql);
 
             while (rs.next()){
-                LoanUtils.ObProduct.add(new Product(rs.getInt("ProductId"), rs.getString("ProdName"),
+                LoanUtils.ObProduct.add(new Product(rs.getInt("ProductID"), rs.getString("ProdName"),
                         rs.getDouble("ProdPrice"), rs.getString("ProdUnit")));
             }
 
@@ -311,8 +312,8 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
     @Override
     public boolean AddLoan(final double total, String modeOfPayment, String Term, String duedate) {
 
-        String addLoan = "INSERT INTO Loan " +
-                "(CustomerID, ProductID, PaymentMode, Duedate, Term, Qty, Status)" +
+        String addLoan =
+                "INSERT INTO Loan (CustomerID, ProductID, PaymentMode, Duedate, Term, Qty, Status) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         String addBalance = "UPDATE Customer SET Balance += ? WHERE CustomerID = ?";
@@ -393,8 +394,8 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
         Connection conn = Connect.Link();
         try{
             String sql = "SELECT [p].ProdName, [p].ProdPrice, [L].Qty, [L].PaymentMode, [L].Duedate, [L].Term " +
-            "FROM Product AS p INNER JOIN Loan L on p.ProductId = [L].ProductFk " +
-            "WHERE CustomerFk = ? AND [L].Status = ?";
+            "FROM Product AS p INNER JOIN Loan L on p.ProductId = [L].ProductID " +
+            "WHERE CustomerID = ? AND [L].Status = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, getCustomer_PK());
@@ -426,7 +427,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
 
         GetCustomers();
 
-        String updateQrCode = "UPDATE Customer SET QrCode = ? WHERE CustomerId = ?";
+        String updateQrCode = "UPDATE Customer SET QrCode = ? WHERE CustomerID = ?";
 
         Connection conn = Connect.Link();
 
@@ -436,16 +437,13 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             //update the qr code with the latest balance
             for (Customer customer : ObCustomer) {
                 if (customer.getCustomer_id() == getCustomer_PK()) {
-                    ps.setBytes(1, qrCodeGen.GenerateQRCode(qrCodeGen.Build(customer.getFirstname(), customer.getLastname(), customer.getMobile()
+                    ps.setBytes(1, qrCodeGen.GenerateQRCode(qrCodeGen.BuildString(customer.getFirstname(), customer.getLastname(), customer.getMobile()
                             , customer.getAddress(), customer.getBalance())));
                     ps.setInt(2, getCustomer_PK());
                     break; //if found
                 }
             }
             ps.executeUpdate();
-
-            //if customer is successfully added
-            MessageBox.ShowInformation("Loan has been saved");
 
         } catch (SQLException ex) {
         } catch (IOException | WriterException e) {

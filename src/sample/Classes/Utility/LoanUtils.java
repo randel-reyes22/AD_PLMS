@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sample.Classes.Entities.Account;
 import sample.Classes.Entities.Customer;
-import sample.Classes.Entities.Dealer;
 import sample.Classes.Entities.Product;
 import sample.Classes.TableClasses.HistoryPayment;
 import sample.Classes.TableClasses.LoanedProducts;

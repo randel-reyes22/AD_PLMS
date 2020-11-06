@@ -17,13 +17,13 @@ public class PayOut extends Loan implements IPay {
 
         //update balance of the customer
         //deduct to the remaining balance of the customer
-        String updateBalance = "UPDATE Customer SET Balance = Balance - ? " +
-                                "WHERE CustomerId = ?";
+        String updateBalance = "UPDATE Customer SET Balance -= ? " +
+                                "WHERE CustomerID = ?";
         //open connection
         Connection conn = Connect.Link();
         
         try{
-            //query 1
+            //query one
             PreparedStatement ps = conn.prepareStatement(collect);
             ps.setInt(1, getCustomer_PK());
             ps.setDouble(2, amount);
@@ -37,10 +37,6 @@ public class PayOut extends Loan implements IPay {
             ps2.executeUpdate();
 
             UpdateQrCode(); //will update the latest remaining balance
-
-            //if customer is successfully added
-            MessageBox.ShowInformation("Payment has been deducted \n " +
-                    "to the remaining balance");
         }
         catch (SQLException ex){
             System.out.println(ex.getMessage());

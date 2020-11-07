@@ -14,6 +14,8 @@ import sample.Classes.Utility.LoanUtils;
 import sample.WindowState.Open;
 
 import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
@@ -26,6 +28,9 @@ public class TermConditionController extends NewLoanController implements Initia
     @FXML private TextField tbTerm;
 
     @FXML private DatePicker DueDate;
+
+    @FXML private DatePicker TimeAdded;
+
 
     //classes
     private final Loan loan = new Loan();
@@ -53,7 +58,8 @@ public class TermConditionController extends NewLoanController implements Initia
 
         if(!CheckEmptyFields()) {
             //stat means if loan is successfully added
-            boolean stat = loan.AddLoan(totalAmount /*this is from the protected var*/,tbModeOfPayment.getText().toUpperCase(), term, due/*final string date*/);
+            boolean stat = loan.AddLoan(totalAmount /*this is from the protected var*/,tbModeOfPayment.getText().toUpperCase(),
+                    term, due/*final string date*/, Date.valueOf(TimeAdded.getValue()));
 
             if (stat) {
                 LoanUtils.ObTableReceipt.clear(); //clear the table receipt
@@ -80,7 +86,9 @@ public class TermConditionController extends NewLoanController implements Initia
         LinkedList<TextField> textFields = new LinkedList<>();
         textFields.add(tbCustomerName);
         textFields.add(tbModeOfPayment);
-        //textFields.add(tbTerm);
+
+        if(TimeAdded.getValue() == null)/*if time added is empty return false*/
+            return false;
 
         if(tbTerm.getText().isEmpty())
             term = none;

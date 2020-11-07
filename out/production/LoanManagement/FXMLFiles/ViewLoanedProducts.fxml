@@ -8,18 +8,19 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ViewLoanedProductsController">
+<AnchorPane prefHeight="600.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ViewLoanedProductsController">
    <children>
-      <BorderPane layoutX="26.0" layoutY="49.0" prefHeight="518.0" prefWidth="840.0">
+      <BorderPane layoutX="26.0" layoutY="49.0" prefHeight="518.0" prefWidth="942.0">
          <center>
-            <TableView fx:id="LoanedProductsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="LoanedProductsTable" prefHeight="441.0" prefWidth="919.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="col_id" prefWidth="176.0" text="Product name" />
                 <TableColumn fx:id="col_price" prefWidth="127.0" text="Price" />
                   <TableColumn fx:id="col_qty" prefWidth="132.0" text="Quantity" />
-                  <TableColumn fx:id="col_payment_mode" prefWidth="139.0" text="Paymend mode" />
-                  <TableColumn fx:id="col_due_date" prefWidth="135.0" text="Due date" />
-                  <TableColumn fx:id="col_term" prefWidth="130.0" text="Term" />
+                  <TableColumn fx:id="col_payment_mode" prefWidth="139.0" text="Payment mode" />
+                  <TableColumn fx:id="col_time_added" prefWidth="120.0" text="Date Added" />
+                  <TableColumn fx:id="col_due_date" prefWidth="133.0" text="Due date" />
+                  <TableColumn fx:id="col_term" prefWidth="113.0" text="Term" />
               </columns>
             </TableView>
          </center>

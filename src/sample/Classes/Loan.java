@@ -20,6 +20,7 @@ import sample.Classes.Utility.WeekDates;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.Date;
 
 public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWallet {
 
@@ -309,12 +310,11 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
     }
 
     //ILoan methods implementation
-    @Override
-    public boolean AddLoan(final double total, String modeOfPayment, String Term, String duedate) {
+    public boolean AddLoan(final double total, String modeOfPayment, String Term, String duedate, Date timeAdded) {
 
         String addLoan =
-                "INSERT INTO Loan (CustomerID, ProductID, PaymentMode, Duedate, Term, Qty, Status) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "INSERT INTO Loan (CustomerID, ProductID, PaymentMode, Duedate, Term, Qty, Status, TimeAdded) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         String addBalance = "UPDATE Customer SET Balance += ? WHERE CustomerID = ?";
 
@@ -331,6 +331,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
                 ps.setString(5, Term);
                 ps.setInt(6, tr.getQty());
                 ps.setString(7, UNPAID);
+                ps.setDate(8, (java.sql.Date) timeAdded);
                 ps.executeUpdate();
             }
 
@@ -393,7 +394,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
         LoanUtils.ObLoanedProducts.clear(); //clear the ob list
         Connection conn = Connect.Link();
         try{
-            String sql = "SELECT [p].ProdName, [p].ProdPrice, [L].Qty, [L].PaymentMode, [L].Duedate, [L].Term " +
+            String sql = "SELECT [p].ProdName, [p].ProdPrice, [L].Qty, [L].PaymentMode, [L].Duedate, [L].Term, [L].TimeAdded " +
             "FROM Product AS p INNER JOIN Loan L on p.ProductId = [L].ProductID " +
             "WHERE CustomerID = ? AND [L].Status = ?";
 
@@ -405,7 +406,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             while (rs.next()){
                 LoanUtils.ObLoanedProducts.add(new LoanedProducts(rs.getString("ProdName"), rs.getDouble("ProdPrice"),
                                             rs.getInt("Qty"), rs.getString("PaymentMode"),
-                                            rs.getString("Duedate"), rs.getString("Term")));
+                                            rs.getString("Duedate"), rs.getString("Term"), rs.getDate("TimeAdded")));
             }
 
         }

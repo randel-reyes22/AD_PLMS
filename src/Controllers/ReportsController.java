@@ -13,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import sample.Classes.ConnectDB.Connect;
 import sample.Classes.Entities.Customer;
-import sample.Classes.Tools.MessageBox;
 import sample.Classes.Loan;
 import sample.Classes.TableClasses.HistoryPayment;
 import sample.Classes.TableClasses.LoanedProducts;
@@ -29,6 +28,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ResourceBundle;
+import java.util.Date;
 
 public class ReportsController implements Initializable {
 
@@ -56,12 +56,12 @@ public class ReportsController implements Initializable {
     private SortedList<Customer> sortedListCustomer = new SortedList<>(filteredListCustomer);
     private final Loan loan = new Loan();
 
-    //history part
+    //for guidance history part
     @FXML private Label lbTotal;
 
     @FXML private Label customer_name_selected;
 
-    //payment history
+    //for payment history
     @FXML private TableView<HistoryPayment> table_payment_history;
 
     @FXML private TableColumn<HistoryPayment, Integer> col_loan_id;
@@ -70,6 +70,7 @@ public class ReportsController implements Initializable {
 
     @FXML private TableColumn<HistoryPayment, String> col_given_date;
 
+    //for loaned product history
     @FXML private TableView<LoanedProducts> LoanedProductsTable;
 
     @FXML private TableColumn<LoanedProducts, String> col_prod_name;
@@ -79,6 +80,8 @@ public class ReportsController implements Initializable {
     @FXML private TableColumn<LoanedProducts, Integer> col_qty;
 
     @FXML private TableColumn<LoanedProducts, String> col_payment_mode;
+
+    @FXML private TableColumn<LoanedProducts, Date> col_time_added;
 
     @FXML private TableColumn<LoanedProducts, String> col_due_date;
 
@@ -148,10 +151,18 @@ public class ReportsController implements Initializable {
         col_amount.setCellValueFactory(new PropertyValueFactory<>("collection_amount"));
         col_given_date.setCellValueFactory(new PropertyValueFactory<>("givenDate"));
 
+        //call the method for init
+        LoanedProductsFunc(col_prod_name, col_price, col_qty, col_payment_mode, col_time_added, col_due_date, col_term);
+    }
+
+    /*this is the table for the loaned products
+    * use both in this class and ViewLoanedProductsController Class*/
+    static void LoanedProductsFunc(TableColumn<LoanedProducts, String> col_prod_name, TableColumn<LoanedProducts, Double> col_price, TableColumn<LoanedProducts, Integer> col_qty, TableColumn<LoanedProducts, String> col_payment_mode, TableColumn<LoanedProducts, Date> col_time_added, TableColumn<LoanedProducts, String> col_due_date, TableColumn<LoanedProducts, String> col_term) {
         col_prod_name.setCellValueFactory(new PropertyValueFactory<>("prod_name"));
         col_price.setCellValueFactory(new PropertyValueFactory<>("prod_price"));
         col_qty.setCellValueFactory(new PropertyValueFactory<>("prod_qty"));
         col_payment_mode.setCellValueFactory(new PropertyValueFactory<>("prod_payment_mode"));
+        col_time_added.setCellValueFactory(new PropertyValueFactory<>("TimeAdded"));
         col_due_date.setCellValueFactory(new PropertyValueFactory<>("due"));
         col_term.setCellValueFactory(new PropertyValueFactory<>("term"));
     }
@@ -205,6 +216,7 @@ public class ReportsController implements Initializable {
                         loan.GetPaymentHistory("PAID"); //get the history
                         table_payment_history.setItems(Loan.ObHistoryPayments); //display the payment history
                         lbTotal.setText("Total : " + Math.round(TotalPaymentHistory()));
+
                         //product loaned history
                         loan.GetProductsLoaned("PAID");
                         LoanedProductsTable.setItems(LoanUtils.ObLoanedProducts);

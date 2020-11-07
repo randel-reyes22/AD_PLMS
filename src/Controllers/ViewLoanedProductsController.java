@@ -1,5 +1,6 @@
 package Controllers;
 
+import javafx.beans.property.Property;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import sample.Classes.TableClasses.LoanedProducts;
 import sample.Classes.Utility.LoanUtils;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ViewLoanedProductsController implements Initializable {
@@ -27,6 +29,8 @@ public class ViewLoanedProductsController implements Initializable {
     @FXML private TableColumn<LoanedProducts, Integer> col_qty;
 
     @FXML private TableColumn<LoanedProducts, String> col_payment_mode;
+
+    @FXML private TableColumn<LoanedProducts, Date> col_time_added;
 
     @FXML private TableColumn<LoanedProducts, String> col_due_date;
 
@@ -50,12 +54,7 @@ public class ViewLoanedProductsController implements Initializable {
     }
 
     private void InitColumns(){
-        col_id.setCellValueFactory(new PropertyValueFactory<>("prod_name"));
-        col_price.setCellValueFactory(new PropertyValueFactory<>("prod_price"));
-        col_qty.setCellValueFactory(new PropertyValueFactory<>("prod_qty"));
-        col_payment_mode.setCellValueFactory(new PropertyValueFactory<>("prod_payment_mode"));
-        col_due_date.setCellValueFactory(new PropertyValueFactory<>("due"));
-        col_term.setCellValueFactory(new PropertyValueFactory<>("term"));
+        ReportsController.LoanedProductsFunc(col_id, col_price, col_qty, col_payment_mode, col_time_added, col_due_date, col_term);
     }
 
     private void GetLoanedProducts(){

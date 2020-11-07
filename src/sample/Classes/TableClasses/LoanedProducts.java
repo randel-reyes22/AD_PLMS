@@ -1,5 +1,7 @@
 package sample.Classes.TableClasses;
 
+import java.util.Date;
+
 public class LoanedProducts {
 
     private String prod_name;
@@ -8,15 +10,17 @@ public class LoanedProducts {
     private String prod_payment_mode;
     private String due;
     private String term;
+    private Date TimeAdded;
 
     public LoanedProducts(String prod_name, double prod_price, int prod_qty,
-                          String prod_payment_mode, String due, String term) {
+                          String prod_payment_mode, String due, String term, Date TimeAdded) {
         this.prod_name = prod_name;
         this.prod_price = prod_price;
         this.prod_qty = prod_qty;
         this.prod_payment_mode = prod_payment_mode;
         this.due = due;
         this.term = term;
+        this.TimeAdded = TimeAdded;
     }
 
     public String getProd_name() {
@@ -66,4 +70,8 @@ public class LoanedProducts {
     public void setTerm(String term) {
         this.term = term;
     }
+
+    public Date getTimeAdded() { return TimeAdded; }
+
+    public void setTimeAdded(Date timeAdded) { TimeAdded = timeAdded; }
 }

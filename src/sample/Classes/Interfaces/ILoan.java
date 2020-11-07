@@ -1,9 +1,7 @@
 package sample.Classes.Interfaces;
 
-import sample.Classes.Entities.Customer;
+import java.util.Date;
 
-import java.sql.SQLException;
-import java.util.LinkedList;
 
 public interface ILoan {
 
@@ -14,7 +12,7 @@ public interface ILoan {
 
     /*This will add loan to a particular customer
     * then insert it to the loan table*/
-    boolean AddLoan(double total, String modeOfPayment, String Term, String duedate);
+    boolean AddLoan(double total, String modeOfPayment, String Term, String duedate, Date timeAdded);
 
     /*This will get the unpaid payment history of a particular customer*/
     void GetPaymentHistory(String status);

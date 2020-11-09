@@ -1,6 +1,7 @@
 package Controllers;
 
 import javafx.scene.Node;
+import sample.Classes.Tools.MessageBox;
 import sample.WindowState.Close;
 import sample.WindowState.Open;
 import javafx.collections.FXCollections;
@@ -93,6 +94,13 @@ public class NewLoanController extends CustomersController implements Initializa
     //add the chose product and qty in the table
     @FXML
     void btnAddLoanedProduct(ActionEvent event) {
+
+        /*if the product name text field is empty show message box*/
+        if(tbProductname.getText().isEmpty()) {
+            MessageBox.ShowInformation("Please select a product");
+            return;
+        }
+
         //total qty * the price of the product
         double total = prodQty.getValue() * product_price;
         //add the Table receipt to OB

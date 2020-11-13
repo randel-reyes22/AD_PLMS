@@ -29,7 +29,7 @@ public class TermConditionController extends NewLoanController implements Initia
 
     @FXML private DatePicker DueDate;
 
-    @FXML private DatePicker TimeAdded;
+    @FXML private DatePicker DateAdded;
 
 
     //classes
@@ -59,7 +59,7 @@ public class TermConditionController extends NewLoanController implements Initia
         if(!CheckEmptyFields()) {
             //stat means if loan is successfully added
             boolean stat = loan.AddLoan(totalAmount /*this is from the protected var*/,tbModeOfPayment.getText().toUpperCase(),
-                    term, due/*final string date*/, Date.valueOf(TimeAdded.getValue()));
+                    term, due/*final string date*/, Date.valueOf(DateAdded.getValue()));
 
             if (stat) {
                 LoanUtils.ObTableReceipt.clear(); //clear the table receipt
@@ -87,7 +87,7 @@ public class TermConditionController extends NewLoanController implements Initia
         textFields.add(tbCustomerName);
         textFields.add(tbModeOfPayment);
 
-        if(TimeAdded.getValue() == null)/*if time added is empty return false*/
+        if(DateAdded.getValue() == null)/*if time added is empty return false*/
             return false;
 
         if(tbTerm.getText().isEmpty())

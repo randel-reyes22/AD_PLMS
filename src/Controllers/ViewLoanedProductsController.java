@@ -30,7 +30,7 @@ public class ViewLoanedProductsController implements Initializable {
 
     @FXML private TableColumn<LoanedProducts, String> col_payment_mode;
 
-    @FXML private TableColumn<LoanedProducts, Date> col_time_added;
+    @FXML private TableColumn<LoanedProducts, Date> col_date_added;
 
     @FXML private TableColumn<LoanedProducts, String> col_due_date;
 
@@ -54,7 +54,7 @@ public class ViewLoanedProductsController implements Initializable {
     }
 
     private void InitColumns(){
-        ReportsController.LoanedProductsFunc(col_id, col_price, col_qty, col_payment_mode, col_time_added, col_due_date, col_term);
+        ReportsController.LoanedProductsFunc(col_id, col_price, col_qty, col_payment_mode, col_date_added, col_due_date, col_term);
     }
 
     private void GetLoanedProducts(){

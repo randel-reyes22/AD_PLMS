@@ -18,7 +18,7 @@
                 <TableColumn fx:id="col_price" prefWidth="127.0" text="Price" />
                   <TableColumn fx:id="col_qty" prefWidth="132.0" text="Quantity" />
                   <TableColumn fx:id="col_payment_mode" prefWidth="139.0" text="Payment mode" />
-                  <TableColumn fx:id="col_time_added" prefWidth="120.0" text="Date Added" />
+                  <TableColumn fx:id="col_date_added" prefWidth="120.0" text="Date Added" />
                   <TableColumn fx:id="col_due_date" prefWidth="133.0" text="Due date" />
                   <TableColumn fx:id="col_term" prefWidth="113.0" text="Term" />
               </columns>

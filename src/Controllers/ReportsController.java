@@ -81,7 +81,7 @@ public class ReportsController implements Initializable {
 
     @FXML private TableColumn<LoanedProducts, String> col_payment_mode;
 
-    @FXML private TableColumn<LoanedProducts, Date> col_time_added;
+    @FXML private TableColumn<LoanedProducts, Date> col_date_added;
 
     @FXML private TableColumn<LoanedProducts, String> col_due_date;
 
@@ -152,17 +152,17 @@ public class ReportsController implements Initializable {
         col_given_date.setCellValueFactory(new PropertyValueFactory<>("givenDate"));
 
         //call the method for init
-        LoanedProductsFunc(col_prod_name, col_price, col_qty, col_payment_mode, col_time_added, col_due_date, col_term);
+        LoanedProductsFunc(col_prod_name, col_price, col_qty, col_payment_mode, col_date_added, col_due_date, col_term);
     }
 
     /*this is the table for the loaned products
     * use both in this class and ViewLoanedProductsController Class*/
-    static void LoanedProductsFunc(TableColumn<LoanedProducts, String> col_prod_name, TableColumn<LoanedProducts, Double> col_price, TableColumn<LoanedProducts, Integer> col_qty, TableColumn<LoanedProducts, String> col_payment_mode, TableColumn<LoanedProducts, Date> col_time_added, TableColumn<LoanedProducts, String> col_due_date, TableColumn<LoanedProducts, String> col_term) {
+    static void LoanedProductsFunc(TableColumn<LoanedProducts, String> col_prod_name, TableColumn<LoanedProducts, Double> col_price, TableColumn<LoanedProducts, Integer> col_qty, TableColumn<LoanedProducts, String> col_payment_mode, TableColumn<LoanedProducts, Date> col_date_added, TableColumn<LoanedProducts, String> col_due_date, TableColumn<LoanedProducts, String> col_term) {
         col_prod_name.setCellValueFactory(new PropertyValueFactory<>("prod_name"));
         col_price.setCellValueFactory(new PropertyValueFactory<>("prod_price"));
         col_qty.setCellValueFactory(new PropertyValueFactory<>("prod_qty"));
         col_payment_mode.setCellValueFactory(new PropertyValueFactory<>("prod_payment_mode"));
-        col_time_added.setCellValueFactory(new PropertyValueFactory<>("TimeAdded"));
+        col_date_added.setCellValueFactory(new PropertyValueFactory<>("DateAdded"));
         col_due_date.setCellValueFactory(new PropertyValueFactory<>("due"));
         col_term.setCellValueFactory(new PropertyValueFactory<>("term"));
     }

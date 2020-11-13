@@ -10,17 +10,17 @@ public class LoanedProducts {
     private String prod_payment_mode;
     private String due;
     private String term;
-    private Date TimeAdded;
+    private Date DateAdded;
 
     public LoanedProducts(String prod_name, double prod_price, int prod_qty,
-                          String prod_payment_mode, String due, String term, Date TimeAdded) {
+                          String prod_payment_mode, String due, String term, Date DateAdded) {
         this.prod_name = prod_name;
         this.prod_price = prod_price;
         this.prod_qty = prod_qty;
         this.prod_payment_mode = prod_payment_mode;
         this.due = due;
         this.term = term;
-        this.TimeAdded = TimeAdded;
+        this.DateAdded = DateAdded;
     }
 
     public String getProd_name() {
@@ -71,7 +71,7 @@ public class LoanedProducts {
         this.term = term;
     }
 
-    public Date getTimeAdded() { return TimeAdded; }
+    public Date getDateAdded() { return DateAdded; }
 
-    public void setTimeAdded(Date timeAdded) { TimeAdded = timeAdded; }
+    public void setDateAdded(Date DateAdded) { DateAdded = DateAdded; }
 }

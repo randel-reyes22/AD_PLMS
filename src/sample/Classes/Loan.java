@@ -394,7 +394,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
         LoanUtils.ObLoanedProducts.clear(); //clear the ob list
         Connection conn = Connect.Link();
         try{
-            String sql = "SELECT [p].ProdName, [p].ProdPrice, [L].Qty, [L].PaymentMode, [L].Duedate, [L].Term, [L].TimeAdded " +
+            String sql = "SELECT [p].ProdName, [p].ProdPrice, [L].Qty, [L].PaymentMode, [L].Duedate, [L].Term, [L].DateAdded " +
             "FROM Product AS p INNER JOIN Loan L on p.ProductId = [L].ProductID " +
             "WHERE CustomerID = ? AND [L].Status = ?";
 
@@ -406,7 +406,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             while (rs.next()){
                 LoanUtils.ObLoanedProducts.add(new LoanedProducts(rs.getString("ProdName"), rs.getDouble("ProdPrice"),
                                             rs.getInt("Qty"), rs.getString("PaymentMode"),
-                                            rs.getString("Duedate"), rs.getString("Term"), rs.getDate("TimeAdded")));
+                                            rs.getString("Duedate"), rs.getString("Term"), rs.getDate("DateAdded")));
             }
 
         }

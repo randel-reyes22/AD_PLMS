@@ -69,12 +69,12 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
         /* get the first most added customer in the linked list */
         Account account = LLAccount.getFirst();
 
-        String insertCustomer = "INSERT INTO Account (Firstname, Lastname, Username, Password) " +
+        String insertNewAccount = "INSERT INTO Account (Firstname, Lastname, Username, Password) " +
                                 "VALUES (?, ?, ?, ?)";
         Connection conn = Connect.Link();
 
         try{
-            PreparedStatement ps = conn.prepareStatement(insertCustomer);
+            PreparedStatement ps = conn.prepareStatement(insertNewAccount);
             ps.setString(1, account.getFirstname());
             ps.setString(2, account.getLastname());
             ps.setString(3, account.getUsername());
@@ -82,13 +82,17 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             ps.executeUpdate();
 
             //if customer is successfully added
-            MessageBox.ShowInformation("Account has been added");
+            MessageBox.ShowInformation("New account has been added");
         }
+
         catch (SQLException ex){
-            System.out.println(ex.getMessage());
-            //if an exception occurs
-            MessageBox.ShowError("An error occurred");
+            /*for duplication of username*/
+            if(ex.getMessage().contains("Cannot insert duplicate key"))
+                MessageBox.ShowWarning("The username is already taken");
+            else//if other errors occurred
+                MessageBox.ShowError("An error occurred");
         }
+
         finally {
             try {
                 conn.close();

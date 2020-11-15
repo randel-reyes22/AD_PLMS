@@ -107,7 +107,7 @@
             <Image url="@../icons/loan.png" />
          </image>
       </ImageView>
-      <Label layoutX="720.0" layoutY="25.0" onMouseClicked="#AddAccount" text="Add Account">
+      <Label layoutX="845.0" layoutY="55.0" onMouseClicked="#AddAccount" text="Add New Account">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

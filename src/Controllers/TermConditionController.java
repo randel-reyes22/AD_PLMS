@@ -95,9 +95,9 @@ public class TermConditionController extends NewLoanController implements Initia
         else
             term = tbTerm.getText();
 
-        if(DueDate.getValue() == null) {
+        if(DueDate.getValue() == null)
             due = none;
-        }else
+        else
             due = String.valueOf(DueDate.getValue());
 
         for (TextField t : textFields) {

@@ -314,10 +314,10 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
     }
 
     //ILoan methods implementation
-    public boolean AddLoan(final double total, String modeOfPayment, String Term, String duedate, Date timeAdded) {
+    public boolean AddLoan(final double total, String modeOfPayment, String Term, String duedate, Date DateAdded) {
 
         String addLoan =
-                "INSERT INTO Loan (CustomerID, ProductID, PaymentMode, Duedate, Term, Qty, Status, TimeAdded) " +
+                "INSERT INTO Loan (CustomerID, ProductID, PaymentMode, Duedate, Term, Qty, Status, DateAdded) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         String addBalance = "UPDATE Customer SET Balance += ? WHERE CustomerID = ?";
@@ -335,7 +335,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
                 ps.setString(5, Term);
                 ps.setInt(6, tr.getQty());
                 ps.setString(7, UNPAID);
-                ps.setDate(8, (java.sql.Date) timeAdded);
+                ps.setDate(8, (java.sql.Date) DateAdded);
                 ps.executeUpdate();
             }
 
@@ -352,6 +352,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             return true;
 
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             return false;
         } finally {
             try {

@@ -61,6 +61,7 @@ public class PayOut extends Loan implements IPay {
         String loanId = "SELECT * FROM Loan WHERE CustomerID = ? AND Status = ?";
 
         Connection conn;
+        boolean hitzerobalance = false;
         conn = Connect.Link();
 
         try{
@@ -86,12 +87,15 @@ public class PayOut extends Loan implements IPay {
                             ps.setInt(2, loan_id);
                             ps.executeUpdate();
 
-                            //if customer have 0 remaining balance
-                            MessageBox.ShowInformation("Customer has 0 remaining balance");
+                            //change the value to true
+                            hitzerobalance = true;
                         }
                     }
                 }
             }
+
+            if(hitzerobalance)//if customer have 0 remaining balance
+                MessageBox.ShowInformation("Customer has 0 remaining balance");
 
         }
         catch (SQLException ex){

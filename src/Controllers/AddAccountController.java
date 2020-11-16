@@ -30,6 +30,8 @@ public class AddAccountController implements Initializable {
 
     private final Loan loan = new Loan();
 
+    private LinkedList<TextField> textFields = new LinkedList<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -37,16 +39,22 @@ public class AddAccountController implements Initializable {
 
     @FXML
     void AddNewAccount(ActionEvent event) {
-        if(!CheckFields()){
-            //add account to the linked list
-            //encode to hash the password
-            LoanUtils.LLAccount.addFirst( new Account(tbFirstname.getText(), tbLastname.getText(),
-                            tbUsername.getText(), Hash.Encode(tbPassword.getText())));
 
-            //invoke method to insert in the db
-            loan.AddUserAccount();
-        }else
+        if(CheckFields()){
             MessageBox.ShowWarning("Supply all fields");
+            return;
+        }
+
+        //add account to the linked list
+        //encode to hash the password
+        LoanUtils.LLAccount.addFirst( new Account(tbFirstname.getText(), tbLastname.getText(),
+                tbUsername.getText(), Hash.Encode(tbPassword.getText())));
+
+        //invoke method to insert in the db
+        loan.AddUserAccount();
+
+        //clear the text fields
+        clearFields();
     }
 
     @FXML
@@ -56,7 +64,6 @@ public class AddAccountController implements Initializable {
     }
 
     private boolean CheckFields(){
-        LinkedList<TextField> textFields = new LinkedList<>();
         textFields.add( tbFirstname );
         textFields.add( tbLastname );
         textFields.add( tbUsername );
@@ -68,5 +75,10 @@ public class AddAccountController implements Initializable {
         }
 
         return false;
+    }
+
+    private void clearFields(){
+        for (TextField t: textFields)
+            t.clear();
     }
 }

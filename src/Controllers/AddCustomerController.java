@@ -41,8 +41,8 @@ public class AddCustomerController extends CustomersController implements Initia
 
         switch (LoanUtils.Action_classifier){
             case "Update": //for updating the customer
-                lbTItle.setText("Update Customer");
-                btnSave.setText("Update");
+                lbTItle.setText("Update Customer"); //changes the header
+                btnSave.setText("Update"); //changes the header
 
                 for(Customer c: LoanUtils.ObCustomer){
                     if(c.getCustomer_id() == LoanUtils.getCustomer_PK()){

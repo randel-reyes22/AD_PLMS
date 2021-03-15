@@ -33,7 +33,8 @@ Import-Package: javax.sql;resolution:=optional,
  javafx.application,
  javax.imageio,
  com.sun.org.apache.xerces.internal.impl.dv.util,
- javafx.embed.swing
+ javafx.embed.swing,
+ javax.crypto
 Originally-Created-By: Apache Maven Bundle Plugin
 Tool: Bnd-2.1.0.20130426-122213
 

@@ -1,6 +1,5 @@
 package Controllers;
 
-import javafx.beans.property.Property;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Classes.Entities.Customer;
 import sample.Classes.Loan;
 import sample.Classes.TableClasses.LoanedProducts;

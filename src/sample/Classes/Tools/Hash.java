@@ -33,6 +33,7 @@ public class Hash {
         catch (Exception e)
         {
             System.out.println("Error while encrypting: " + e.toString());
+            MessageBox.ShowError("Failed to login");
         }
         return null;
     }
@@ -54,6 +55,7 @@ public class Hash {
         }
         catch (Exception e) {
             System.out.println("Error while decrypting: " + e.toString());
+            MessageBox.ShowError("Failed to login");
         }
         return null;
     }

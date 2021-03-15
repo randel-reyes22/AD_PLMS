@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import sample.Classes.Tools.MessageBox;
 import sample.Classes.Loan;
 import sample.WindowState.Open;
@@ -25,6 +24,8 @@ public class LoginController implements Initializable {
 
     //classes
     private final Loan loan = new Loan();
+    //identifiers
+    private final String Success = "success", Failed = "failed", Error = "error";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,19 +33,20 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void AuthLogin(ActionEvent event) {
+    void AuthLogin(ActionEvent event)
+    {
         switch (loan.Login(tbUsername.getText(), tbPassword.getText()))
         {
-            case "success": //if login is successful
+            case Success: //if login is successful
                 Open.Dashboard();
                 ((Node)(event.getSource())).getScene().getWindow().hide();
                 break;
 
-            case "failed"://if login details is incorrect
+            case Failed://if login details is incorrect
                 MessageBox.ShowInformation("Your username or password is incorrect.");
                 break;
 
-            case "error"://if have an exception
+            case Error://if have an exception
                 MessageBox.ShowError("Something went wrong.");
                 break;
         }

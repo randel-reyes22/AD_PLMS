@@ -16,7 +16,7 @@ public class Connect {
 
         try
         {
-            conn = DriverManager.getConnection(LappyURL);
+            conn = DriverManager.getConnection(PCURL);
         }
         catch (SQLException e)
         {

@@ -117,8 +117,9 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             ps.setString(2, customer.getLastname());
             ps.setString(3, customer.getMobile());
             ps.setString(4, customer.getAddress());
-            ps.setBytes(5, qrCodeGen.GenerateQRCode(qrCodeGen.BuildString(customer.getFirstname(), customer.getLastname(), customer.getMobile()
-                            , customer.getAddress(), customer.getBalance())));
+            ps.setBytes(5, qrCodeGen.GenerateQRCode(qrCodeGen.BuildString(String.valueOf(customer.getCustomer_id()),
+                                                                          customer.getFirstname(), customer.getLastname(),customer.getMobile(),
+                                                                          customer.getAddress(), customer.getBalance())));
             ps.executeUpdate();
 
             //if customer is successfully added
@@ -443,7 +444,7 @@ public class Loan extends LoanUtils implements IAccount, IProduct, ILoan, IWalle
             //update the qr code with the latest balance
             for (Customer customer : ObCustomer) {
                 if (customer.getCustomer_id() == getCustomer_PK()) {
-                    ps.setBytes(1, qrCodeGen.GenerateQRCode(qrCodeGen.BuildString(customer.getFirstname(), customer.getLastname(), customer.getMobile()
+                    ps.setBytes(1, qrCodeGen.GenerateQRCode(qrCodeGen.BuildString(String.valueOf(customer.getCustomer_id()),customer.getFirstname(), customer.getLastname(), customer.getMobile()
                             , customer.getAddress(), customer.getBalance())));
                     ps.setInt(2, getCustomer_PK());
                     break; //if found

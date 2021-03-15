@@ -19,9 +19,10 @@ public class QrCodeGen {
     and returns the QR Code in the form of a byte array.
     */
 
-    public String BuildString(String fname, String lname, String number, String Address, Double balance)
+    public String BuildString(String ID,String fname, String lname, String number, String Address, Double balance)
     {
         StringBuilder builder = new StringBuilder();
+        builder.append("Customer ID   : " + ID + "\n");
         builder.append("Customer Name : " + fname + " " + lname + "\n");
         builder.append("Address       : " + Address + "\n");
         builder.append("Mobile Number : " + number + " \n");

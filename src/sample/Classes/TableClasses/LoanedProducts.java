@@ -73,5 +73,5 @@ public class LoanedProducts {
 
     public Date getDateAdded() { return DateAdded; }
 
-    public void setDateAdded(Date DateAdded) { DateAdded = DateAdded; }
+    public void setDateAdded(Date DateAdded) { this.DateAdded = DateAdded; }
 }
